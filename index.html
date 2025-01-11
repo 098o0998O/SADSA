@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wja6 hazretleri</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: radial-gradient(circle, #000000, #0a0a0a, #1a1a1a);
+        }
+
+        /* Boncuk Stili */
+        .boncuk {
+            position: fixed;
+            top: -50px; /* Ekranın üstünden başlıyor */
+            width: 8px; /* Küçük boyut */
+            height: 8px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.5);
+            animation: boncukFall linear infinite;
+            z-index: 9999;
+            filter: blur(1.5px); /* Hafif bulanıklık */
+        }
+
+        @keyframes boncukFall {
+            0% {
+                transform: translateY(-130vh) scale(0.5); /* Daha yukarıdan başlıyor */
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) scale(0.8); /* Daha küçük kalıyor */
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function createBoncuk() {
+            const boncuk = document.createElement('div');
+            boncuk.classList.add('boncuk');
+
+            // Rastgele yatay pozisyon ve hız
+            boncuk.style.left = Math.random() * window.innerWidth + 'px';
+            boncuk.style.animationDuration = (Math.random() * 2 + 6) + 's'; // Daha yavaş, 6-8 saniye
+            boncuk.style.animationDelay = Math.random() * 3 + 's'; // Farklı başlangıç zamanları
+            boncuk.style.transform = `scale(${Math.random() * 0.5 + 0.3})`; // Rastgele küçük boyut
+            document.body.appendChild(boncuk);
+
+            // Boncuğu belirli bir süre sonra kaldır
+            setTimeout(() => boncuk.remove(), 10000);
+        }
+
+        function createInitialBoncuk(count) {
+            // İlk başta çok sayıda boncuk oluşturulacak
+            for (let i = 0; i < count; i++) {
+                createBoncuk();
+            }
+        }
+
+        function createBoncukRain() {
+            // Her çağrıldığında yeni bir boncuk oluşturulur
+            createBoncuk();
+        }
+
+        // Sayfa yüklendiğinde boncukları hemen başlat
+        window.onload = function () {
+            createInitialBoncuk(20); // İlk yüklemede 20 boncuk hemen oluşturulacak
+            setInterval(createBoncukRain, 50); // Sonrasında her 50ms'de bir boncuk oluşturulacak
+        };
+    </script>
+</body>
+</html>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <rel="icon" type="image/png" href="./images/ks.jpeg" sizes="16x16">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@wja6</title>
+    <style>
+        body {
+            background-color: rgb(0, 0, 0);
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .text {
+            position: absolute;
+            color: rgb(255, 255, 255);
+            font-size: 24px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: nowrap;
+            text-shadow: 0 0 10px rgb(0, 0, 0), 0 0 15px rgb(0, 0, 0), 0 0 20px rgb(255, 255, 255), 0 0 25px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255), 0 0 35px rgb(0, 0, 0), 0 0 40px rgb(0, 0, 0);
+        }
+        .button-container {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+        .button-container a {
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .button-container img {
+            width: 199px;
+            height: auto;
+            margin: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            filter: drop-shadow(0 4px 6px rgba(255, 255, 255, 0.664));
+        }
+        .button-container img:hover {
+            transform: translateY(-5px);
+        }
+        .button-container p {
+            color: #000000;
+            font-size: 25px;
+            font-weight: bold;
+            text-shadow: 0px 0px 3px #ffffff, 0px 0px 5px #ffffff, 0px 0px 7px #ffffff, 0px 0px 10px #ffffff, 0px 0px 15px #ffffff, 0px 0px 20px #ffffff;
+            transition: transform 0.3s ease-in-out;
+        }
+        .button-container p:hover {
+            transform: translateY(-10px);
+            color: #000000;
+        }
+
+    </style>
+</head>
+<body>
+
+    <script>
+        const texts = [
+        ];
+        function createText() {
+            const text = document.createElement('div');
+            text.classList.add('text');
+            text.textContent = texts[Math.floor(Math.random() * texts.length)];
+            text.style.left = Math.random() * window.innerWidth + 'px';
+            document.body.appendChild(text);
+            const duration = Math.random() * 6 + 3;
+            const speed = Math.random() * 100 + 50;
+            setTimeout(() => {
+                text.remove();
+            }, duration * 500);
+            moveText(text, speed);
+        }
+        function moveText(text, speed) {
+            const startTime = Date.now();
+            function animate() {
+                const timePassed = Date.now() - startTime;
+                const distance = speed * timePassed / 1000;
+                text.style.top = distance + 'px';
+                if (text.getBoundingClientRect().top > window.innerHeight) {
+                    text.remove();
+                    return;
+                }
+                requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        }
+        setInterval(createText, 500);
+    </script>
+
+<div class="button-container">
+    <a href="./god/index.html" target="_blank" class="fancy-button">
+        <div class="button-content">
+            <img src="./images/rdd.jpeg" alt="rudxness image">
+            <p>wja6</p>
+        </div>
+    </a>
+</div>
+
+<style>
+    /* Sayfa Genel Stili */
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background: radial-gradient(circle, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9) 60%, rgba(0, 0, 0, 1));
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        cursor: none; /* Varsayılan fareyi gizler */
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Buton ve içerik */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        position: relative;
+    }
+
+    .fancy-button {
+        position: relative;
+        display: inline-block;
+        text-decoration: none;
+        overflow: hidden;
+        border: 2px solid #fff;
+        border-radius: 15px;
+        padding: 20px;
+        width: 240px;
+        height: 240px;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.1);
+        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    }
+
+    .fancy-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.7), 0 0 60px rgba(255, 255, 255, 0.9);
+    }
+
+    .button-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        position: relative;
+    }
+
+    .button-content img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        transition: transform 0.5s ease, filter 0.5s ease;
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+    }
+
+    .fancy-button:hover .button-content img {
+        transform: rotate(360deg) scale(1.2);
+        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 1));
+    }
+
+    .button-content p {
+        font-size: 32px;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6);
+        margin: 0;
+        animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        0% {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6);
+        }
+        100% {
+            text-shadow: 0 0 25px rgba(255, 255, 255, 1), 0 0 50px rgba(0, 255, 255, 0.8);
+        }
+    }
+
+    /* Kedili Imleç */
+    .custom-cursor {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url('https://media.discordapp.net/attachments/1233881524550635650/1321726009665654836/mickey-mouse-hand-victory-animated-custom-cursor_1.gif?ex=6782b805&is=67816685&hm=6b4619e75f1b1971a496f8b15a39fbf63c7438af5fcfc4683c1460e2c6654bac&=&width=362&height=362'); /* Kedi resmini buraya ekleyin */
+        background-size: cover;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        opacity: 0.8;
+        transition: transform 0.1s ease-in-out;
+    }
+
+    .custom-cursor-expand {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 1;
+    }
+
+    /* Arka planda Parlak Yıldız Efekti */
+    .stars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+        z-index: -1;
+        opacity: 0.1;
+    }
+</style>
+
+<script>
+    // Kedili Imleç Oluşturma
+    const cursor = document.createElement('div');
+    cursor.classList.add('custom-cursor');
+    document.body.appendChild(cursor);
+
+    document.addEventListener('mousemove', function(e) {
+        cursor.style.left = `${e.pageX}px`;
+        cursor.style.top = `${e.pageY}px`;
+    });
+
+    document.addEventListener('mouseenter', function() {
+        cursor.classList.add('custom-cursor-expand');
+    });
+
+    document.addEventListener('mouseleave', function() {
+        cursor.classList.remove('custom-cursor-expand');
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
